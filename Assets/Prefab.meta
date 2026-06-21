@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefab.meta
 guid: 17ed504ef60c7fa4b9052001487a8545
+========
+guid: 1b3f7bd6359dc2e86948a496c92eb0b9
+>>>>>>>> f29d5d4 (Added UI (heart, picture and photos) Installed TMP and sprite 2D packages):Assets/Animation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
