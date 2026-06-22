@@ -8,13 +8,18 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float lookSensitivity = 50f;
     [SerializeField] private float pitchClamp = 80f;
 
-    [SerializeField] private GameObject LeftHand;
-    [SerializeField] private GameObject RightHand;
+    [SerializeField] private HandScript LeftHandScript;
+    [SerializeField] private HandScript RightHandScript;
+
+    [SerializeField] private GameEvent _gameEvent;
+
+    [SerializeField] private SpinAroundPoint spinAroundPointScript;
 
     private float yaw;
     private float pitch;
     private Vector2 mousePosition;
     Vector2 screenCenter;
+    private bool isPlaying = false;
 
 
     void Awake()
@@ -43,9 +48,21 @@ public class PlayerScript : MonoBehaviour
         playerInputActions.Player.Look.performed -= OnLook;
         playerInputActions.Player.LeftClick.performed -= MoveHands;
         playerInputActions.Player.RightClick.performed -= MoveHands;
+        //playerInputActions.Player.TricksButton.performed -= isTrickable;
         playerInputActions.Disable();
     }
 
+    void isTrickable(CallbackContext context)
+    {
+        /*if(leftHand.GetComponent<HandScript>().isTrickable() && rightHand.GetComponent<HandScript>().isTrickable())
+        {
+            Debug.Log("Both hands are trickable");
+        }
+        else
+        {
+            Debug.Log("One or both hands are not trickable");
+        }*/
+    }
     void OnLook(CallbackContext context)
     {
         mousePosition = context.ReadValue<Vector2>();
@@ -61,24 +78,53 @@ public class PlayerScript : MonoBehaviour
     void MoveHands(CallbackContext context)
     {
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-        
+    
+        HandScript handToMove;
+        // Determine which hand triggered the action
+        if (context.action.name == "LeftClick")
+        {
+            handToMove = LeftHandScript;
+        }
+        else
+        {
+            handToMove = RightHandScript;
+        }
+
+        HandScript handScript = handToMove.GetComponent<HandScript>();
+        if(handScript.isGrabbing)
+        {
+            handScript.StopGrabbing();
+        }
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f) && !hitInfo.collider.CompareTag("Grabbable"))
         {
             Debug.Log("No object hit by raycast.");
             return;
         }
-        GameObject handToMove;
-        // Determine which hand triggered the action
-        if (context.action.name == "LeftClick")
-        {
-            handToMove = LeftHand;
-        }
-        else
-        {
-            handToMove = RightHand;
-        }
-        HandScript handScript = handToMove.GetComponent<HandScript>();
+
         handScript.SetTarget(hitInfo.point);
     }
 
+    void Update()
+    {
+        if (!isPlaying && (LeftHandScript.isGrabbing || RightHandScript.isGrabbing))
+        {
+            isPlaying = true;
+        }
+        if(!LeftHandScript.isGrabbing && !RightHandScript.isGrabbing && isPlaying)
+        {
+            isPlaying = false;
+            _gameEvent.GameOver();
+            goFly();
+            this.playerInputActions.Disable();
+        }
+    }
+
+    private void goFly()
+    {
+        Debug.Log("Both hands are not grabbing, go fly");
+        Rigidbody rb = this.GetComponent<Rigidbody>();
+        rb.useGravity = true;
+        rb.isKinematic = false;
+        rb.AddForce((transform.up + transform.forward) * spinAroundPointScript.rotationSpeed/10f, ForceMode.Impulse);
+    }
 }

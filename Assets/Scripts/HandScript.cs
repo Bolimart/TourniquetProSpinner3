@@ -10,7 +10,7 @@ public class HandScript : MonoBehaviour
     private Vector3 targetLocalPosition;
     public bool isMoving = false;
     private float GrabStartAt;
-    private bool isGrabbing;
+    public bool isGrabbing;
 
 
     void Start()
@@ -39,14 +39,19 @@ public class HandScript : MonoBehaviour
                 isMoving = false;
             }
     }
+
+    public void StopGrabbing()
+    {
+        isGrabbing = false;
+        this.transform.SetParent(Camera.main.transform);
+    }
     void Update()
     {
         if(isGrabbing)
         {
             if (Time.time - GrabStartAt > grabDuration)
             {
-                isGrabbing = false;
-                this.transform.SetParent(Camera.main.transform); // Reset parent to camera
+                StopGrabbing();
             }
             return;
         }
