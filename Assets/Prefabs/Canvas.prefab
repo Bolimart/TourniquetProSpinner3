@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 6945821772476610346}
   - component: {fileID: 5195912535702919787}
   - component: {fileID: 5337420781814116515}
-  - component: {fileID: 65627800835750743}
   - component: {fileID: 289663462534523627}
+  - component: {fileID: 9064228627870759739}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -141,26 +141,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &65627800835750743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070591344418314765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 017ce061149d2a0ffb407052c9bdee72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CanvaGameScript
-  photoPrefab: {fileID: 8442443327037165003, guid: 9abdb4f0be77298de804886c449867b1, type: 3}
-  photos:
-  - {fileID: 21300000, guid: 367f57f236e86ad2b924382ef9d27f46, type: 3}
-  - {fileID: 21300000, guid: d8009b4efef557df08f481509e10e58d, type: 3}
-  - {fileID: 21300000, guid: 70fcfc4f65c7213abb745b46d435ccc4, type: 3}
-  pointsPrefab: {fileID: 5926182418830624730, guid: ea583b76d587a3269afcdeb0cac63f77, type: 3}
-  textPointZone: {fileID: 7950572327661456061}
-  textPointSeparation: 100
 --- !u!95 &289663462534523627
 Animator:
   serializedVersion: 7
@@ -183,6 +163,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9064228627870759739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070591344418314765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ff9211193e2416cae9be17943b77376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CanvaGameScript
+  photoPrefab: {fileID: 8442443327037165003, guid: 9abdb4f0be77298de804886c449867b1, type: 3}
+  photos:
+  - {fileID: 21300000, guid: 367f57f236e86ad2b924382ef9d27f46, type: 3}
+  - {fileID: 21300000, guid: d8009b4efef557df08f481509e10e58d, type: 3}
+  - {fileID: 21300000, guid: 70fcfc4f65c7213abb745b46d435ccc4, type: 3}
+  pointsPrefab: {fileID: 5926182418830624730, guid: ea583b76d587a3269afcdeb0cac63f77, type: 3}
+  textPointZone: {fileID: 7950572327661456061}
 --- !u!1 &4963466031447863897
 GameObject:
   m_ObjectHideFlags: 0

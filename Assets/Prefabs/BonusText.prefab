@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 198997256473772215}
   - component: {fileID: 7541087442882292250}
   - component: {fileID: 8228974558944311724}
+  - component: {fileID: 381658767629759096}
   m_Layer: 5
   m_Name: BonusText
   m_TagString: Untagged
@@ -137,3 +138,47 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &381658767629759096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037038344113910042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c64e7b5e9cd4570a3f515f43e274dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointTextScript
+  multiplier: 0.25
+  points: 120
+  text: Wow
+  textColor: {r: 1, g: 0.7033792, b: 0, a: 0}
+  lifespan: 1.5
+  fadeOutTime: 0.5
+  downDisplacement: 100
+  downSpeed: 0.15
+  downCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

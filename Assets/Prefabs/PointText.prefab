@@ -148,15 +148,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5926182418830624730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a89b42cd1bb806c4bf95c0aa01bfe33, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c64e7b5e9cd4570a3f515f43e274dc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   multiplier: 0.25
   points: 120
-  text: Wow
-  textColor: {r: 1, g: 0.9654912, b: 0, a: 1}
-  lifespan: 2.5
-  fadeOutTime: 0.5
+  text: Wow !
+  textColor: {r: 1, g: 0.6691481, b: 0, a: 0}
+  lifespan: 3
+  fadeOutTime: 1
   downDisplacement: 100
   downSpeed: 0.15
   downCurve:

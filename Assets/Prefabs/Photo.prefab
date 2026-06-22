@@ -108,8 +108,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8442443327037165003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61467ff226abc1fc9a3df57e4f631eb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0519507b723c478f8b2dc69c21b691e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageScript
-  showTime: 1
+  showTime: 1.5
   rotationRange: {x: -15, y: 15}
