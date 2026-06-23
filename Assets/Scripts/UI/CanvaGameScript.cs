@@ -7,6 +7,7 @@ public class CanvaGameScript : MonoBehaviour
 {
     // ———— Fields ————
 
+    [SerializeField] private GameEvent _gameEvent;
     public GameObject photoPrefab;
     public Sprite[] photos;
     
@@ -17,8 +18,8 @@ public class CanvaGameScript : MonoBehaviour
     
     
     // ———— Unity events ————
-    
-    void Start()
+
+    void PerformTrick()
     {
         SpawnPhoto(RandomPhoto());
         _pointsText = new();
@@ -26,9 +27,15 @@ public class CanvaGameScript : MonoBehaviour
         SpawnPointsText(pointsPrefab);
     }
 
-    void Update()
+    void OnEnable()
     {
-        
+        _gameEvent.onTrickPerformed += PerformTrick;
+    }
+
+
+    void OnDisable()
+    {
+        _gameEvent.onTrickPerformed -= PerformTrick;
     }
     
     // ———— Methods ————
@@ -37,8 +44,9 @@ public class CanvaGameScript : MonoBehaviour
     {
         GameObject photo = Instantiate(photoPrefab, transform);
         photo.GetComponent<Image>().sprite = sprite;
-        photo.GetComponent<ImageScript>().OnCorner += () => SpawnPhoto(RandomPhoto()); 
+        photo.GetComponent<ImageScript>().OnCorner += () => Time.timeScale = 1f; 
         SpawnPointsText(pointsPrefab);
+        Time.timeScale = 0f;
     }
 
     public void SpawnPointsText(GameObject tmp)

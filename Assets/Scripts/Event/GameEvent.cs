@@ -9,6 +9,10 @@ public class GameEvent : ScriptableObject
 
     public Action on100Score;
 
+    public Action onTrucDuMilieuAccélérant;
+
+    public Action onTrickPerformed;
+
     public void GameOver()
     {
         onGameOver?.Invoke();
@@ -17,6 +21,17 @@ public class GameEvent : ScriptableObject
     public void Score100()
     {
         on100Score?.Invoke();
+    }
+
+    public void TrucDuMilieuAccélérant()
+    {
+        onTrucDuMilieuAccélérant?.Invoke();
+        onTrucDuMilieuAccélérant?.BeginInvoke(null, null);
+    }
+
+    public void TrickPerformed()
+    {
+        onTrickPerformed?.Invoke();
     }
     
 }

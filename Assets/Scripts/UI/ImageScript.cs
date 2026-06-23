@@ -16,6 +16,7 @@ public class ImageScript : MonoBehaviour
     void Start()
     {
         _animator = GetComponent<Animator>();
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         float randomRotation = Random.Range(rotationRange.x, rotationRange.y);
         GetComponent<Transform>().localRotation = Quaternion.Euler(0, 0, randomRotation);
     }
@@ -24,11 +25,12 @@ public class ImageScript : MonoBehaviour
     {
         if (!_isInCorner && showTime <= _showTimer)
         {
+            
             _animator.SetTrigger("ToCorner");
             _isInCorner = true;
             OnCorner?.Invoke();
         }
-        else _showTimer += Time.deltaTime;
+        else _showTimer += Time.unscaledDeltaTime;
     }
     
     // ———— Events ————

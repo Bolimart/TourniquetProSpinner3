@@ -108,3 +108,4 @@ MonoBehaviour:
   axis: {x: 0, y: 1, z: 0}
   rotationSpeed: 10
   _gameEvent: {fileID: 0}
+  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}

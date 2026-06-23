@@ -1,8 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 public class HandScript : MonoBehaviour
 {
+
     [SerializeField] private float moveSpeed = 5.0f;
 
     [SerializeField] private float grabDuration = 5.0f;
@@ -20,7 +22,7 @@ public class HandScript : MonoBehaviour
 
     public void SetTarget(Vector3 worldPoint)
     {
-        Debug.Log("SetTarget called with worldPoint: " + worldPoint);
+        //Debug.Log("SetTarget called with worldPoint: " + worldPoint);
         Transform parent = transform.parent;
         targetLocalPosition = parent.InverseTransformPoint(worldPoint); //convert world point to local point
         isMoving = true;
@@ -37,6 +39,7 @@ public class HandScript : MonoBehaviour
             {
                 transform.localPosition = position;
                 isMoving = false;
+                this.GetComponent<Collider>().enabled = true;
             }
     }
 
@@ -44,6 +47,7 @@ public class HandScript : MonoBehaviour
     {
         isGrabbing = false;
         this.transform.SetParent(Camera.main.transform);
+        this.GetComponent<Collider>().enabled = false;
     }
     void Update()
     {
@@ -77,8 +81,7 @@ public class HandScript : MonoBehaviour
 
     private void StartGrabbing(GameObject target)
     {
-        this.transform.SetParent(target.transform);
-        this.transform.localPosition = Vector3.zero;
+        this.transform.SetParent(null);
         GrabStartAt = Time.time;
         isGrabbing = true;
     }

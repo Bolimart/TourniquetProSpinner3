@@ -21,6 +21,9 @@ public class PlayerScript : MonoBehaviour
     Vector2 screenCenter;
     private bool isPlaying = false;
 
+    private float TrickedAt = 0f;
+    private float TrickDuration = 1f;
+
 
     void Awake()
     {
@@ -41,6 +44,7 @@ public class PlayerScript : MonoBehaviour
         playerInputActions.Player.Look.performed += OnLook;
         playerInputActions.Player.LeftClick.performed += MoveHands;
         playerInputActions.Player.RightClick.performed += MoveHands;
+        playerInputActions.Player.TricksButton.performed += isTrickable;
     }
 
     void OnDisable()
@@ -48,20 +52,19 @@ public class PlayerScript : MonoBehaviour
         playerInputActions.Player.Look.performed -= OnLook;
         playerInputActions.Player.LeftClick.performed -= MoveHands;
         playerInputActions.Player.RightClick.performed -= MoveHands;
-        //playerInputActions.Player.TricksButton.performed -= isTrickable;
+        playerInputActions.Player.TricksButton.performed -= isTrickable;
         playerInputActions.Disable();
     }
 
     void isTrickable(CallbackContext context)
     {
-        /*if(leftHand.GetComponent<HandScript>().isTrickable() && rightHand.GetComponent<HandScript>().isTrickable())
+
+        if(LeftHandScript.isGrabbing && RightHandScript.isGrabbing && Time.time - TrickedAt > TrickDuration)
         {
-            Debug.Log("Both hands are trickable");
+            Debug.Log("Both hands are grabbing, performing trick");
+            _gameEvent.TrickPerformed();
+            TrickedAt = Time.time;
         }
-        else
-        {
-            Debug.Log("One or both hands are not trickable");
-        }*/
     }
     void OnLook(CallbackContext context)
     {
@@ -75,10 +78,10 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    void MoveHands(CallbackContext context)
-    {
+    void MoveHands(CallbackContext context){
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-    
+
+        
         HandScript handToMove;
         // Determine which hand triggered the action
         if (context.action.name == "LeftClick")
@@ -95,16 +98,25 @@ public class PlayerScript : MonoBehaviour
         {
             handScript.StopGrabbing();
         }
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f) && !hitInfo.collider.CompareTag("Grabbable"))
+
+        float radius = 0.4f; // Rayon de tolérance
+
+        if (Physics.SphereCast(ray, radius, out RaycastHit hit, 100) && !hit.collider.CompareTag("Grabbable"))
         {
-            Debug.Log("No object hit by raycast.");
+            //Debug.Log("No object hit by spherecast.");
             return;
         }
 
-        handScript.SetTarget(hitInfo.point);
+        /*if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f) && !hitInfo.collider.CompareTag("Grabbable"))
+        {
+            Debug.Log("No object hit by raycast.");
+            return;
+        }*/
+
+        handScript.SetTarget(hit.point);
     }
 
-    void Update()
+    private void Update()
     {
         if (!isPlaying && (LeftHandScript.isGrabbing || RightHandScript.isGrabbing))
         {

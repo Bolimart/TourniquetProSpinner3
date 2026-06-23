@@ -24,10 +24,14 @@ public class PointTextScript : MonoBehaviour
     private float _lifespanTimer = 0;
     private bool _isFadingOut = false;
     private TextMeshProUGUI _tmp;
+
+    private Animator _animator;
     
     // ———— Unity Events ————
     void Start()
     {
+        _animator = GetComponent<Animator>();
+        _animator.updateMode = AnimatorUpdateMode.UnscaledTime;
         _tmp = GetComponent<TextMeshProUGUI>();
         if (_tmp == null) Debug.LogError("TextMeshPro manquant sur " + gameObject.name);
         string pointsText = "";
@@ -44,7 +48,7 @@ public class PointTextScript : MonoBehaviour
     {
         if (!_isFadingOut && _lifespanTimer <= lifespan)
         {
-            _lifespanTimer += Time.deltaTime;
+            _lifespanTimer += Time.unscaledDeltaTime;
         }
         else if (_lifespanTimer > lifespan) // Should do this only once
         {
@@ -56,7 +60,7 @@ public class PointTextScript : MonoBehaviour
     
     // ———— Methods ————
     
-    public void FadeOut() => GetComponent<Animator>().SetTrigger("FadeOut");
+    public void FadeOut() => _animator.SetTrigger("FadeOut");
     
     public void GoDown() => StartCoroutine(GoDownCoroutine());
     private IEnumerator GoDownCoroutine()
@@ -67,9 +71,9 @@ public class PointTextScript : MonoBehaviour
     
         while (timer < downSpeed)
         {
-            timer += Time.deltaTime;
+            timer += Time.unscaledDeltaTime;
             var t = downCurve.Evaluate(timer / downSpeed);
-            print(t);
+            //print(t);
             transform.position = Vector3.Lerp(start, destination, t);
             yield return null;
         }
