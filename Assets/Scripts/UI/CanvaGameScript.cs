@@ -7,35 +7,27 @@ public class CanvaGameScript : MonoBehaviour
 {
     // ———— Fields ————
 
-    [SerializeField] private GameEvent _gameEvent;
     public GameObject photoPrefab;
     public Sprite[] photos;
     
-    public GameObject pointsPrefab; // TODO: Test feature : remove later
+    public GameObject pointsPrefab;
 
     public RectTransform textPointZone;
     private List<GameObject> _pointsText = new();
+    private PointTextScript _prefabScript;
     
     
     // ———— Unity events ————
-
-    void PerformTrick()
+    
+    void Start()
     {
-        SpawnPhoto(RandomPhoto());
         _pointsText = new();
+        _prefabScript = pointsPrefab.GetComponent<PointTextScript>();
+    }
+
+    void Update()
+    {
         
-        SpawnPointsText(pointsPrefab);
-    }
-
-    void OnEnable()
-    {
-        _gameEvent.onTrickPerformed += PerformTrick;
-    }
-
-
-    void OnDisable()
-    {
-        _gameEvent.onTrickPerformed -= PerformTrick;
     }
     
     // ———— Methods ————
@@ -44,21 +36,22 @@ public class CanvaGameScript : MonoBehaviour
     {
         GameObject photo = Instantiate(photoPrefab, transform);
         photo.GetComponent<Image>().sprite = sprite;
-        photo.GetComponent<ImageScript>().OnCorner += () => Time.timeScale = 1f; 
-        SpawnPointsText(pointsPrefab);
-        Time.timeScale = 0f;
     }
 
-    public void SpawnPointsText(GameObject tmp)
+    public void SpawnPointsText(int points, float multiplier, string text)
     {
         OnNewText?.Invoke();
         
-        tmp = Instantiate(tmp, transform);
+        
+        _prefabScript.points = points;
+        _prefabScript.multiplier = multiplier;
+        _prefabScript.text = text;
+        var pointText = Instantiate(pointsPrefab, transform);
         Vector3 pos = textPointZone.position;
 
-        tmp.transform.position = pos;
-        //_pointsText.Add(tmp);
-        var script = tmp.GetComponent<PointTextScript>();
+        pointsPrefab.transform.position = pos;
+        _pointsText.Add(pointText);
+        var script = pointsPrefab.GetComponent<PointTextScript>();
         OnNewText += script.GoDown;
     }
 

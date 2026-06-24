@@ -2,7 +2,7 @@ using System;
 using NUnit.Framework;
 using UnityEngine;
 
-public class TrucDuMilieuAccélérant : MonoBehaviour
+public class SpinnerPillardScript : MonoBehaviour
 {
     [SerializeField] private ShouldSpeedUp shouldSpeedUp;
 

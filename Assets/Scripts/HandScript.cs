@@ -8,16 +8,26 @@ public class HandScript : MonoBehaviour
     [SerializeField] private float moveSpeed = 5.0f;
 
     [SerializeField] private float grabDuration = 5.0f;
+    public Color initialColor;
+    public Color tiredColor;
+    public bool isLeftHand;
     private Vector3 initialLocalPosition;
     private Vector3 targetLocalPosition;
+    public Sprite handOpenSprite;
+    public Sprite handCloseSprite;
     public bool isMoving = false;
     private float GrabStartAt;
+    private Collider _collider;
+    private SpriteRenderer _sprite;
     public bool isGrabbing;
+    public CursorScript cursorScript;
 
 
     void Start()
     {
-        initialLocalPosition = this.transform.localPosition;
+        initialLocalPosition = transform.localPosition;
+        _collider = GetComponent<Collider>();
+        _sprite = GetComponent<SpriteRenderer>();
     }
 
     public void SetTarget(Vector3 worldPoint)
@@ -39,21 +49,32 @@ public class HandScript : MonoBehaviour
             {
                 transform.localPosition = position;
                 isMoving = false;
-                this.GetComponent<Collider>().enabled = true;
+                _collider.enabled = true;
             }
     }
 
     public void StopGrabbing()
     {
         isGrabbing = false;
-        this.transform.SetParent(Camera.main.transform);
-        this.GetComponent<Collider>().enabled = false;
+        transform.SetParent(null);
+        transform.localScale = Vector3.one * 0.25f;
+        _collider.enabled = false;
+        _sprite.sprite = handOpenSprite;
+        _sprite.color = initialColor;
+        cursorScript.UpdateHand(isLeftHand, initialColor, handOpenSprite);
     }
     void Update()
     {
+        // The hand always look at the camera
+        transform.LookAt(transform.parent);
+        
         if(isGrabbing)
         {
-            if (Time.time - GrabStartAt > grabDuration)
+            float timeLeft = Time.time - GrabStartAt;
+            var color = Color.Lerp(initialColor, tiredColor, timeLeft / grabDuration);
+            cursorScript.UpdateHand(isLeftHand, color, handCloseSprite);
+            _sprite.color = color;
+            if (timeLeft > grabDuration)
             {
                 StopGrabbing();
             }
@@ -81,8 +102,13 @@ public class HandScript : MonoBehaviour
 
     private void StartGrabbing(GameObject target)
     {
-        this.transform.SetParent(null);
+        
+        transform.SetParent(null);
+        transform.localScale = Vector3.one * 0.125f;
         GrabStartAt = Time.time;
         isGrabbing = true;
+        _sprite.sprite = handCloseSprite;
+        //SetTarget(target.transform.position);
+        cursorScript.UpdateHand(isLeftHand, initialColor, handCloseSprite);
     }
 }

@@ -137,6 +137,6 @@ public class PlayerScript : MonoBehaviour
         Rigidbody rb = this.GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
-        rb.AddForce((transform.up + transform.forward) * spinAroundPointScript.rotationSpeed/10f, ForceMode.Impulse);
+        rb.AddForce((transform.up + transform.forward) * spinAroundPointScript.GetRotationSpeed()/10f, ForceMode.Impulse);
     }
 }

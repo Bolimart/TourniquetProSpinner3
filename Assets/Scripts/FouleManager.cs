@@ -1,40 +1,36 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FouleManager : MonoBehaviour
 {
+
+    public float spawnRadius = 30f;
+    public Vector3 spawnCenter;
+    
     [SerializeField] private GameObject[] crowdPrefabs;
-    [SerializeField] private GameObject Plane;
 
     [SerializeField] private GameEvent _gameEvent;
 
     [SerializeField] private Transform playerTransform; 
+    
     void OnEnable()
     {
-        _gameEvent.on100Score += addCrowd;
+        _gameEvent.on100Score += AddCrowd;
     }
 
     void OnDisable()
     {
-        _gameEvent.on100Score -= addCrowd;
+        _gameEvent.on100Score -= AddCrowd;
     }
 
-    void addCrowd()
+    void AddCrowd()
     {
-        // Get the bounds of the plane
-        Bounds planeBounds = Plane.GetComponent<Renderer>().bounds;
-
-        // Generate a random position within the bounds of the plane
-        float randomX = Random.Range(planeBounds.min.x/2, planeBounds.max.x/2);
-        float randomZ = Random.Range(planeBounds.min.z/2, planeBounds.max.z/2);
-        Vector3 randomPosition = new Vector3(randomX, planeBounds.max.y, randomZ);
-
-
-        // Instantiate a random crowd prefab at the random position
-        int randomIndex = Random.Range(0, crowdPrefabs.Length);
-        Quaternion rotationTowardsPlayer = Quaternion.LookRotation(playerTransform.position - randomPosition);
-        GameObject crowdInstance = Instantiate(crowdPrefabs[randomIndex], randomPosition, rotationTowardsPlayer);
-
-        int randomScale = Random.Range(1, 3);
-        crowdInstance.transform.localScale = new Vector3(randomScale, randomScale, randomScale);
+        Func<float, Vector3> circleFunc = k => new Vector3(spawnCenter.x + spawnRadius * math.cos(k), spawnCenter.y + spawnRadius * math.sin(k), spawnCenter.z);
+        
+        float k = Random.Range(0f, 2f * Mathf.PI);
+        var crowd = Instantiate(crowdPrefabs[Random.Range(0, crowdPrefabs.Length)], circleFunc(k), Quaternion.identity);
+        crowd.transform.LookAt(playerTransform);
     }
 }
