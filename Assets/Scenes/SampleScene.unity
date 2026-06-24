@@ -168,6 +168,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &240908558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1195785256600884432, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &363126717
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +185,6 @@ GameObject:
   - component: {fileID: 363126721}
   - component: {fileID: 363126720}
   - component: {fileID: 363126719}
-  - component: {fileID: 363126718}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -188,23 +192,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &363126718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 363126717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
-  origin: {x: 0, y: 0, z: 0}
-  axis: {x: 0, y: 1, z: 0}
-  rotationSpeed: 10
-  _gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}
-  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
 --- !u!65 &363126719
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -309,7 +296,6 @@ GameObject:
   - component: {fileID: 410087041}
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
-  - component: {fileID: 410087043}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -426,23 +412,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!114 &410087043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
-  origin: {x: 0, y: 0, z: 0}
-  axis: {x: 0, y: 1, z: 0}
-  rotationSpeed: 10
-  _gameEvent: {fileID: 0}
-  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
 --- !u!1 &653722172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 489eea3b76ccf1616a1f35da9a675047, type: 3}
@@ -576,6 +545,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &889949358 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1718318641300523722, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1043304848 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 491154287991660722, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1070439332 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4855243624049500966, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1086833996
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -657,6 +641,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1664080153}
   m_SourcePrefab: {fileID: 100100000, guid: de5db3281bfa968ea889537183dd66fe, type: 3}
+--- !u!1 &1130964143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9059130601767385388, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1275162801
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,7 +657,6 @@ GameObject:
   - component: {fileID: 1275162805}
   - component: {fileID: 1275162804}
   - component: {fileID: 1275162803}
-  - component: {fileID: 1275162806}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -748,23 +736,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1275162806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &1298308331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2983909762243905783, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275162801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
-  origin: {x: 0, y: 0, z: 0}
-  axis: {x: 0, y: 1, z: 0}
-  rotationSpeed: 10
-  _gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}
-  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
 --- !u!1001 &1449908282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -883,10 +859,114 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: afa232826db89404599c6c3e63708639, type: 3}
     m_RemovedComponents:
     - {fileID: 2396426288073012944, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4157730413857731466, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
+--- !u!1 &1561871322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3542282737494562964, guid: cd6af84bcd1afa640bd98f3c6f22ef59, type: 3}
+  m_PrefabInstance: {fileID: 4918061521278008960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1561871325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561871322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
+  origin: {x: 0, y: 0, z: 0}
+  axis: {x: 0, y: 1, z: 0}
+  objectsToRotate:
+  - {fileID: 240908558}
+  - {fileID: 2011834510}
+  - {fileID: 889949358}
+  - {fileID: 1070439332}
+  - {fileID: 1735645050}
+  - {fileID: 1043304848}
+  - {fileID: 1130964143}
+  - {fileID: 1750468102}
+  initialSpeed: 100
+  maxSpeed: 100
+  accelerationTime: 120
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.99968606
+      outSlope: -0.99968606
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0004864
+      value: -0.00017224252
+      inSlope: -0.99968606
+      outSlope: -0.99968606
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
+--- !u!114 &1561871326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1561871322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
+  origin: {x: 0, y: 0, z: 0}
+  axis: {x: 0, y: 1, z: 0}
+  objectsToRotate:
+  - {fileID: 363126717}
+  - {fileID: 1275162801}
+  - {fileID: 410087039}
+  - {fileID: 1298308331}
+  initialSpeed: 0
+  maxSpeed: 100
+  accelerationTime: 120
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
 --- !u!1001 &1654130444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -987,13 +1067,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
   origin: {x: 0, y: 0, z: 0}
   axis: {x: 0, y: 1, z: 0}
-  rotationSpeed: 10
-  _gameEvent: {fileID: 0}
+  objectsToRotate: []
+  initialSpeed: 0
+  maxSpeed: 100
+  accelerationTime: 120
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   shouldSpeedUp: {fileID: 0}
 --- !u!4 &1681226877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2970889004411199829, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
   m_PrefabInstance: {fileID: 3793881119517498409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1735645050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5911870782615613099, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1750468102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8357657006980596443, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1854151848 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 47157921160891245, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
+  m_PrefabInstance: {fileID: 1449908282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52f37a60a8a0833f807443126e9eed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorScript
+--- !u!1 &2011834510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3113480681939137278, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
+  m_PrefabInstance: {fileID: 7650004534113369720}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2118705034
 PrefabInstance:
@@ -1074,8 +1188,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 103333162980945543, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: moveSpeed
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 103333162980945543, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      propertyPath: cursorScript
+      value: 
+      objectReference: {fileID: 1854151848}
     - target: {fileID: 103333162980945543, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: handOpenSprite
       value: 
@@ -1110,11 +1228,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2970889004411199829, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.465
+      value: 1.864
       objectReference: {fileID: 0}
     - target: {fileID: 2970889004411199829, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.966
+      value: 1.659
       objectReference: {fileID: 0}
     - target: {fileID: 2970889004411199829, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1145,6 +1263,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3322856212925139703, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      propertyPath: cursorScript
+      value: 
+      objectReference: {fileID: 1854151848}
+    - target: {fileID: 3322856212925139703, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: handOpenSprite
       value: 
       objectReference: {fileID: 21300000, guid: d64e1fc0be36d473f9d05f8df25dcd16, type: 3}
@@ -1167,7 +1289,7 @@ PrefabInstance:
     - target: {fileID: 8837837363759477443, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: spinAroundPointScript
       value: 
-      objectReference: {fileID: 1275162806}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1236,7 +1358,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3542282737494562964, guid: cd6af84bcd1afa640bd98f3c6f22ef59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1561871326}
+    - targetCorrespondingSourceObject: {fileID: 3542282737494562964, guid: cd6af84bcd1afa640bd98f3c6f22ef59, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1561871325}
   m_SourcePrefab: {fileID: 100100000, guid: cd6af84bcd1afa640bd98f3c6f22ef59, type: 3}
 --- !u!1001 &7650004534113369720
 PrefabInstance:
@@ -1280,7 +1408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8721219110323018264, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.362
+      value: 2.2957873
       objectReference: {fileID: 0}
     - target: {fileID: 8721219110323018264, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
       propertyPath: m_LocalScale.z
@@ -1292,7 +1420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8721219110323018264, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.006
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 8721219110323018264, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
       propertyPath: m_LocalPosition.z

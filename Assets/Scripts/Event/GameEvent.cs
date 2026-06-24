@@ -9,7 +9,7 @@ public class GameEvent : ScriptableObject
 
     public Action on100Score;
 
-    public Action onTrucDuMilieuAccélérant;
+    public Action onSpinnerAccellerate;
 
     public Action onTrickPerformed;
 
@@ -23,10 +23,10 @@ public class GameEvent : ScriptableObject
         on100Score?.Invoke();
     }
 
-    public void TrucDuMilieuAccélérant()
+    public void SpinnerAccelerate()
     {
-        onTrucDuMilieuAccélérant?.Invoke();
-        onTrucDuMilieuAccélérant?.BeginInvoke(null, null);
+        onSpinnerAccellerate?.Invoke();
+        onSpinnerAccellerate?.BeginInvoke(null, null);
     }
 
     public void TrickPerformed()
