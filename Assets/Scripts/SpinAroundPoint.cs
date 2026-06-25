@@ -24,6 +24,7 @@ public class SpinAroundPoint : MonoBehaviour
     public float accelerationTime = 120f; // The time it takes to accelerate to max speed
     public AnimationCurve accelerationCurve;
     private float accelerationTimer = 0f;
+    public int BaseMultiplier = 0;
     
     
 
@@ -39,6 +40,8 @@ public class SpinAroundPoint : MonoBehaviour
         float deltaAngle = rotationSpeed * Time.deltaTime;
         transform.RotateAround(origin, axis, deltaAngle);
         accelerationTimer += Time.deltaTime;
+        BaseMultiplier = 50 * (int)(rotationSpeed / maxSpeed);
+        
     }
     
     // ———— Methods ————

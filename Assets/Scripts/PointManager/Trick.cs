@@ -8,6 +8,5 @@ namespace PointManager
         public float multiplier;
         public string text;
         public Sprite photo;
-
     }
 }

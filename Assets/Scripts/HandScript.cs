@@ -19,8 +19,12 @@ public class HandScript : MonoBehaviour
     private float GrabStartAt;
     private Collider _collider;
     private SpriteRenderer _sprite;
+
+    public GameObject grabbedObject;
     public bool isGrabbing;
     public CursorScript cursorScript;
+
+    private Transform parent;
 
 
     void Start()
@@ -33,9 +37,10 @@ public class HandScript : MonoBehaviour
     public void SetTarget(Vector3 worldPoint)
     {
         //Debug.Log("SetTarget called with worldPoint: " + worldPoint);
-        Transform parent = transform.parent;
+        parent = transform.parent;
         targetLocalPosition = parent.InverseTransformPoint(worldPoint); //convert world point to local point
         isMoving = true;
+        //_collider.enabled = true;
     }
 
     public void Move(Vector3 position)
@@ -56,9 +61,9 @@ public class HandScript : MonoBehaviour
     public void StopGrabbing()
     {
         isGrabbing = false;
-        transform.SetParent(null);
         transform.localScale = Vector3.one * 0.25f;
         _collider.enabled = false;
+        transform.SetParent(parent);
         _sprite.sprite = handOpenSprite;
         _sprite.color = initialColor;
         cursorScript.UpdateHand(isLeftHand, initialColor, handOpenSprite);
@@ -102,7 +107,7 @@ public class HandScript : MonoBehaviour
 
     private void StartGrabbing(GameObject target)
     {
-        
+        grabbedObject = target;
         transform.SetParent(null);
         transform.localScale = Vector3.one * 0.125f;
         GrabStartAt = Time.time;

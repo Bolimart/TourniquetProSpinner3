@@ -13,6 +13,13 @@ public class GameEvent : ScriptableObject
 
     public Action onTrickPerformed;
 
+    public Action onResetTrickCombo;
+
+    public void ResetTrickCombo()
+    {
+        onResetTrickCombo?.Invoke();
+    }
+
     public void GameOver()
     {
         onGameOver?.Invoke();
@@ -26,7 +33,6 @@ public class GameEvent : ScriptableObject
     public void TrucDuMilieuAccélérant()
     {
         onTrucDuMilieuAccélérant?.Invoke();
-        onTrucDuMilieuAccélérant?.BeginInvoke(null, null);
     }
 
     public void TrickPerformed()

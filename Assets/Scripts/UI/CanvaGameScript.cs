@@ -40,6 +40,7 @@ public class CanvaGameScript : MonoBehaviour
 
     public void SpawnPointsText(int points, float multiplier, string text)
     {
+        
         OnNewText?.Invoke();
         
         
@@ -49,10 +50,11 @@ public class CanvaGameScript : MonoBehaviour
         var pointText = Instantiate(pointsPrefab, transform);
         Vector3 pos = textPointZone.position;
 
-        pointsPrefab.transform.position = pos;
+        pointText.transform.position = pos;
         _pointsText.Add(pointText);
-        var script = pointsPrefab.GetComponent<PointTextScript>();
+        var script = pointText.GetComponent<PointTextScript>();
         OnNewText += script.GoDown;
+
     }
 
     public void RemoveLastPointsText()

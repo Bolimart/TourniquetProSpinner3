@@ -15,14 +15,20 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private SpinAroundPoint spinAroundPointScript;
 
+    [SerializeField] private TricksManager tricksManager;
+
+
     private float yaw;
     private float pitch;
     private Vector2 mousePosition;
     Vector2 screenCenter;
     private bool isPlaying = false;
 
-    private float TrickedAt = 0f;
-    private float TrickDuration = 1f;
+
+
+    
+    private GameObject LeftLastGrabbedObject = null;
+    private GameObject RightLastGrabbedObject = null;
 
 
     void Awake()
@@ -59,13 +65,22 @@ public class PlayerScript : MonoBehaviour
     void isTrickable(CallbackContext context)
     {
 
-        if(LeftHandScript.isGrabbing && RightHandScript.isGrabbing && Time.time - TrickedAt > TrickDuration)
+        if(LeftHandScript.isGrabbing && RightHandScript.isGrabbing && tricksManager.TryTrick())
         {
+            if(LeftHandScript.grabbedObject != LeftLastGrabbedObject || RightHandScript.grabbedObject != RightLastGrabbedObject)
+            {
+                tricksManager.BigTricks();
+            }
+
             Debug.Log("Both hands are grabbing, performing trick");
             _gameEvent.TrickPerformed();
-            TrickedAt = Time.time;
+            tricksManager.PerformTrick();
+            LeftLastGrabbedObject = LeftHandScript.grabbedObject;
+            RightLastGrabbedObject = RightHandScript.grabbedObject;
         }
     }
+
+
     void OnLook(CallbackContext context)
     {
         mousePosition = context.ReadValue<Vector2>();
@@ -129,6 +144,7 @@ public class PlayerScript : MonoBehaviour
             goFly();
             this.playerInputActions.Disable();
         }
+
     }
 
     private void goFly()
