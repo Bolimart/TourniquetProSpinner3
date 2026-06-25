@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using static UnityEngine.InputSystem.InputAction;
 
@@ -11,6 +12,8 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private GameObject leftHand;
     [SerializeField] private GameObject rightHand;
+    
+    [SerializeField] private float cameraOrbitRadius = 1f;
     
     private HandScript _leftHandScript;
     private HandScript _rightHandScript;
@@ -105,7 +108,6 @@ public class PlayerScript : MonoBehaviour
 
     void MoveHands(CallbackContext context){
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-
         
         HandScript handToMove;
         // Determine which hand triggered the action
@@ -124,9 +126,9 @@ public class PlayerScript : MonoBehaviour
             handScript.StopGrabbing();
         }
 
-        float radius = 0.4f; // Rayon de tolérance
+        float radius = 0.6f; // Rayon de tolérance
 
-        if (Physics.SphereCast(ray, radius, out RaycastHit hit, 100) && !hit.collider.CompareTag("Grabbable"))
+        if (Physics.SphereCast(ray, radius, out RaycastHit hit, armLenght) && !hit.collider.CompareTag("Grabbable"))
         {
             //Debug.Log("No object hit by spherecast.");
             return;
@@ -157,15 +159,41 @@ public class PlayerScript : MonoBehaviour
         
     }
 
+    private Coroutine _repositionCoroutine;
+
     public void OnHandGrabbed()
     {
         if (_rightHandScript.isGrabbing && _leftHandScript.isGrabbing)
         {
-            // Put the player between the two hands and with a distance of the arm
-            Vector3 middlePosition = (leftHand.transform.position + rightHand.transform.position) / 2f;
-            print(middlePosition);
-            print(middlePosition + transform.forward * armLenght);
-            transform.position = middlePosition + transform.forward * armLenght;
+            if (_repositionCoroutine != null)
+                StopCoroutine(_repositionCoroutine);
+            _repositionCoroutine = StartCoroutine(SmoothReposition());
+        }
+    }
+
+    private IEnumerator SmoothReposition()
+    {
+        float smoothTime = 0.3f;
+        Vector3 velocity = Vector3.zero;
+        float fixedY = transform.position.y;
+
+        while (_rightHandScript.isGrabbing && _leftHandScript.isGrabbing)
+        {
+            Vector3 leftPos = leftHand.transform.position;
+            Vector3 rightPos = rightHand.transform.position;
+            Vector3 midPoint = (leftPos + rightPos) / 2f;
+
+            // Projection du milieu sur le cercle de rayon r centré en 0
+            Vector3 flatMid = new Vector3(midPoint.x, 0f, midPoint.z);
+            Vector3 targetPosition = flatMid.normalized * cameraOrbitRadius;
+            targetPosition.y = fixedY;
+
+            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+
+            if (Vector3.Distance(transform.position, targetPosition) < 0.001f)
+                yield break;
+
+            yield return null;
         }
     }
 
@@ -175,6 +203,8 @@ public class PlayerScript : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
-        rb.AddForce((transform.up + transform.forward) * spinAroundPointScript.GetRotationSpeed()/10f, ForceMode.Impulse);
+        float speed = spinAroundPointScript.GetRotationSpeed() / 100;
+        print(speed);
+        rb.AddForce((transform.up + transform.forward) * speed, ForceMode.Impulse);
     }
 }

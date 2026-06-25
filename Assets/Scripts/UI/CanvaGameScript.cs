@@ -16,6 +16,8 @@ public class CanvaGameScript : MonoBehaviour
     private List<GameObject> _pointsText = new();
     private PointTextScript _prefabScript;
     
+    private AudioSource _audioSource;
+    
     
     // ———— Unity events ————
     
@@ -23,6 +25,7 @@ public class CanvaGameScript : MonoBehaviour
     {
         _pointsText = new();
         _prefabScript = pointsPrefab.GetComponent<PointTextScript>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -36,13 +39,13 @@ public class CanvaGameScript : MonoBehaviour
     {
         GameObject photo = Instantiate(photoPrefab, transform);
         photo.GetComponent<Image>().sprite = sprite;
+        _audioSource.Play();
     }
 
     public void SpawnPointsText(int points, float multiplier, string text)
     {
         
         OnNewText?.Invoke();
-        
         
         _prefabScript.points = points;
         _prefabScript.multiplier = multiplier;

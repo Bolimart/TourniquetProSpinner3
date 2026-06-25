@@ -6,14 +6,16 @@ public class PostProcessManager : MonoBehaviour
     // ———— Fields ————
     
     public Material nausea;
+    public GameEvent gameEvent;
     public float nauseaAmount;
-    public bool nauseaZoom;
     
     // ———— Unity events ————
     
     void Start()
     {
-        updateNausea();
+        nausea.SetFloat("_Amplitude", 0f);
+        nausea.SetFloat("_Zoom", 0f);
+        gameEvent.onGameOver += updateNausea;
     }
 
     void Update()
@@ -25,8 +27,9 @@ public class PostProcessManager : MonoBehaviour
     
     void updateNausea()
     {
+        print("Nausea");
         float amplitude = 0.01f * nauseaAmount;
         nausea.SetFloat("_Amplitude", amplitude);
-        nausea.SetFloat("_Zoom", nauseaZoom ? 1f : 0f);
+        nausea.SetFloat("_Zoom", 1f);
     }
 }

@@ -41,6 +41,7 @@ public class SpinAroundPoint : MonoBehaviour
 
     void Start()
     {
+        gameEvent.onGameOver += StopTurning;
         foreach (var obj in objectsToRotate) _objectsToRotate.Add(obj);
     }
     

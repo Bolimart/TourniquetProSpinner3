@@ -156,10 +156,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerScript
   lookSensitivity: 0.15
   pitchClamp: 80
-  armLenght: 80
-  leftHand: {fileID: 0}
-  rightHand: {fileID: 0}
-  gameEvent: {fileID: 0}
+  armLenght: 30
+  leftHand: {fileID: 8299860304625680436}
+  rightHand: {fileID: 6723838300021564915}
+  cameraOrbitRadius: 1.5
+  gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}
   spinAroundPointScript: {fileID: 0}
   tricksManager: {fileID: 0}
   canMove: 1
