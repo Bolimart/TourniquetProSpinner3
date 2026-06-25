@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2050940604799229057}
   - component: {fileID: 3117464315577734692}
-  - component: {fileID: -8976484128643001530}
   m_Layer: 0
   m_Name: Foule
   m_TagString: Untagged
@@ -92,20 +91,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-8976484128643001530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2531732917117552731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
-  origin: {x: 0, y: 0, z: 0}
-  axis: {x: 0, y: 1, z: 0}
-  rotationSpeed: 10
-  _gameEvent: {fileID: 0}
-  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
