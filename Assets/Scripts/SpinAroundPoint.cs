@@ -13,9 +13,11 @@ public class SpinAroundPoint : MonoBehaviour
     public Vector3 origin;
     public Vector3 axis = new Vector3(0, 1, 0);
     public GameObject[] objectsToRotate;
+
+    public GameEvent gameEvent;
     //public float angle;
 
-    public float initialSpeed = 0f;
+    public float initialSpeed = 10f;
     public float maxSpeed = 100f;
     //speed Up every 10 seconds
     // private float speedUpTiming = 5f;
@@ -31,7 +33,7 @@ public class SpinAroundPoint : MonoBehaviour
     public int BaseMultiplier = 0;
     private bool isAccelerating = false;
     
-    private List<GameObject> _objectsToRotate;
+    private List<GameObject> _objectsToRotate = new();
 
     [SerializeField] private ShouldSpeedUp shouldSpeedUp;
     
@@ -47,11 +49,9 @@ public class SpinAroundPoint : MonoBehaviour
         if (!isAccelerating) return;
         
         rotationSpeed = Mathf.Lerp(initialSpeed, maxSpeed, accelerationCurve.Evaluate(accelerationTimer / accelerationTime));
-        float deltaAngle = rotationSpeed * Time.deltaTime;
-        transform.RotateAround(origin, axis, deltaAngle);
-        accelerationTimer += Time.deltaTime;
-        BaseMultiplier = 50 * (int)(rotationSpeed / maxSpeed);
         
+        float deltaAngle = rotationSpeed * Time.deltaTime;
+        accelerationTimer += Time.deltaTime;
         
         foreach (var obj in _objectsToRotate)
         {
@@ -61,10 +61,23 @@ public class SpinAroundPoint : MonoBehaviour
     
     // ———— Methods ————
     
-    public void StartTurning() => isAccelerating = true;
+    public void StartTurning() 
+    {
+        isAccelerating = true;
+        print("Is accelerating");
+    }
     
-    public void StopTurning() => isAccelerating = false;
+    public void StopTurning()
+    {
+        isAccelerating = false;
+        print("Is Stopping");
+    }
     
     public float GetRotationSpeed() => rotationSpeed;
+
+    public void AddObjects(GameObject gameObject)
+    {
+        _objectsToRotate.Add(gameObject);
+    }
 
 }

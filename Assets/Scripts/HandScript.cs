@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 
@@ -25,6 +25,7 @@ public class HandScript : MonoBehaviour
     public CursorScript cursorScript;
 
     private Transform parent;
+    private AudioSource _audioSource;
 
 
     void Start()
@@ -32,6 +33,7 @@ public class HandScript : MonoBehaviour
         initialLocalPosition = transform.localPosition;
         _collider = GetComponent<Collider>();
         _sprite = GetComponent<SpriteRenderer>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void SetTarget(Vector3 worldPoint)
@@ -61,7 +63,7 @@ public class HandScript : MonoBehaviour
     public void StopGrabbing()
     {
         isGrabbing = false;
-        transform.localScale = Vector3.one * 0.25f;
+        transform.localScale = Vector3.one * 0.125f;
         _collider.enabled = false;
         transform.SetParent(parent);
         _sprite.sprite = handOpenSprite;
@@ -115,5 +117,9 @@ public class HandScript : MonoBehaviour
         _sprite.sprite = handCloseSprite;
         //SetTarget(target.transform.position);
         cursorScript.UpdateHand(isLeftHand, initialColor, handCloseSprite);
+        OnGrabbed?.Invoke();
+        _audioSource.Play();
     }
+    
+    public event Action OnGrabbed;
 }

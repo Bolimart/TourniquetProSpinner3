@@ -8,7 +8,6 @@ public class SpinnerPillardScript : MonoBehaviour
     [SerializeField] private ShouldSpeedUp shouldSpeedUp;
     
     [SerializeField] private UnityEvent startEvent;
-    [SerializeField] private UnityEvent stopEvent;
     
     int nbOfHands = 0;
 
@@ -16,7 +15,9 @@ public class SpinnerPillardScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-           // Debug.Log("Player collided with SpinnerAccelerate");
+            // Debug.Log("Player collided with SpinnerAccelerate");
+            startEvent.Invoke();
+            print("One hand on the spinner");
             nbOfHands++;
             if(nbOfHands == 2)
             {

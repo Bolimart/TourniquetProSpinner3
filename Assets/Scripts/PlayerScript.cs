@@ -7,25 +7,27 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private float lookSensitivity = 50f;
     [SerializeField] private float pitchClamp = 80f;
+    [SerializeField] private float armLenght = 80f;
 
-    [SerializeField] private HandScript LeftHandScript;
-    [SerializeField] private HandScript RightHandScript;
+    [SerializeField] private GameObject leftHand;
+    [SerializeField] private GameObject rightHand;
+    
+    private HandScript _leftHandScript;
+    private HandScript _rightHandScript;
 
-    [SerializeField] private GameEvent _gameEvent;
+    [SerializeField] private GameEvent gameEvent;
 
     [SerializeField] private SpinAroundPoint spinAroundPointScript;
 
     [SerializeField] private TricksManager tricksManager;
+    
+    public bool canMove = true;
 
-
-    private float yaw;
-    private float pitch;
-    private Vector2 mousePosition;
-    Vector2 screenCenter;
-    private bool isPlaying = false;
-
-
-
+    private float _yaw;
+    private float _pitch;
+    private Vector2 _mousePosition;
+    private Vector2 screenCenter;
+    private bool _isPlaying = false;
     
     private GameObject LeftLastGrabbedObject = null;
     private GameObject RightLastGrabbedObject = null;
@@ -36,6 +38,7 @@ public class PlayerScript : MonoBehaviour
         playerInputActions = new InputSystem_Actions();
         playerInputActions.Enable();
         
+        
     }
 
     void Start()
@@ -43,6 +46,13 @@ public class PlayerScript : MonoBehaviour
         screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
+        _leftHandScript = leftHand.GetComponent<HandScript>();
+        _rightHandScript = rightHand.GetComponent<HandScript>();
+        if (canMove)
+        {
+            _leftHandScript.OnGrabbed += OnHandGrabbed;
+            _rightHandScript.OnGrabbed += OnHandGrabbed;
+        }
     }
 
     void OnEnable()
@@ -65,31 +75,31 @@ public class PlayerScript : MonoBehaviour
     void isTrickable(CallbackContext context)
     {
 
-        if(LeftHandScript.isGrabbing && RightHandScript.isGrabbing && tricksManager.TryTrick())
+        if(_leftHandScript.isGrabbing && _rightHandScript.isGrabbing && tricksManager.TryTrick())
         {
-            if(LeftHandScript.grabbedObject != LeftLastGrabbedObject || RightHandScript.grabbedObject != RightLastGrabbedObject)
+            if(_leftHandScript.grabbedObject != LeftLastGrabbedObject || _rightHandScript.grabbedObject != RightLastGrabbedObject)
             {
                 tricksManager.BigTricks();
             }
 
             Debug.Log("Both hands are grabbing, performing trick");
-            _gameEvent.TrickPerformed();
+            gameEvent.TrickPerformed();
             tricksManager.PerformTrick();
-            LeftLastGrabbedObject = LeftHandScript.grabbedObject;
-            RightLastGrabbedObject = RightHandScript.grabbedObject;
+            LeftLastGrabbedObject = _leftHandScript.grabbedObject;
+            RightLastGrabbedObject = _rightHandScript.grabbedObject;
         }
     }
 
 
     void OnLook(CallbackContext context)
     {
-        mousePosition = context.ReadValue<Vector2>();
+        _mousePosition = context.ReadValue<Vector2>();
 
-        yaw += mousePosition.x * lookSensitivity;
-        pitch -= mousePosition.y * lookSensitivity;
-        pitch = Mathf.Clamp(pitch, -pitchClamp, pitchClamp);
+        _yaw += _mousePosition.x * lookSensitivity;
+        _pitch -= _mousePosition.y * lookSensitivity;
+        _pitch = Mathf.Clamp(_pitch, -pitchClamp, pitchClamp);
 
-        transform.rotation = Quaternion.Euler(pitch, yaw, 0f);
+        transform.rotation = Quaternion.Euler(_pitch, _yaw, 0f);
     }
 
 
@@ -101,11 +111,11 @@ public class PlayerScript : MonoBehaviour
         // Determine which hand triggered the action
         if (context.action.name == "LeftClick")
         {
-            handToMove = LeftHandScript;
+            handToMove = _leftHandScript;
         }
         else
         {
-            handToMove = RightHandScript;
+            handToMove = _rightHandScript;
         }
 
         HandScript handScript = handToMove.GetComponent<HandScript>();
@@ -133,24 +143,36 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-        if (!isPlaying && (LeftHandScript.isGrabbing || RightHandScript.isGrabbing))
+        if (!_isPlaying && (_leftHandScript.isGrabbing || _rightHandScript.isGrabbing))
         {
-            isPlaying = true;
+            _isPlaying = true;
         }
-        if(!LeftHandScript.isGrabbing && !RightHandScript.isGrabbing && isPlaying)
+        if(!_leftHandScript.isGrabbing && !_rightHandScript.isGrabbing && _isPlaying)
         {
-            isPlaying = false;
-            _gameEvent.GameOver();
-            goFly();
-            this.playerInputActions.Disable();
+            _isPlaying = false;
+            gameEvent.GameOver();
+            goFly(); 
+            playerInputActions.Disable();
         }
+        
+    }
 
+    public void OnHandGrabbed()
+    {
+        if (_rightHandScript.isGrabbing && _leftHandScript.isGrabbing)
+        {
+            // Put the player between the two hands and with a distance of the arm
+            Vector3 middlePosition = (leftHand.transform.position + rightHand.transform.position) / 2f;
+            print(middlePosition);
+            print(middlePosition + transform.forward * armLenght);
+            transform.position = middlePosition + transform.forward * armLenght;
+        }
     }
 
     private void goFly()
     {
         Debug.Log("Both hands are not grabbing, go fly");
-        Rigidbody rb = this.GetComponent<Rigidbody>();
+        Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
         rb.AddForce((transform.up + transform.forward) * spinAroundPointScript.GetRotationSpeed()/10f, ForceMode.Impulse);
