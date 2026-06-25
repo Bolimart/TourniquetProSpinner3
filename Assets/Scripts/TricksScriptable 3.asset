@@ -15,4 +15,4 @@ MonoBehaviour:
   score: 475
   multiplier: 0.4
   text: Damn !
-  photo: {fileID: 21300000, guid: d5ef3f614ddfe674bbc9edd534e5a366, type: 3}
+  photo: {fileID: 21300000, guid: d7c2c2c9879625bbea56e4ddd0ed3727, type: 3}

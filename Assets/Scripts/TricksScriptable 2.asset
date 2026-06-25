@@ -15,4 +15,4 @@ MonoBehaviour:
   score: 400
   multiplier: 0.3
   text: 'Great ! '
-  photo: {fileID: 21300000, guid: a27b7adc8a2533a45be514b9f073b740, type: 3}
+  photo: {fileID: 21300000, guid: e8bbfd1df8775ec0d998432c832f300b, type: 3}

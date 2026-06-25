@@ -15,4 +15,4 @@ MonoBehaviour:
   score: 800
   multiplier: 0.5
   text: ' Coolest Kid'
-  photo: {fileID: 21300000, guid: 22f6d28ecd93c2f4bad55b4a7f513856, type: 3}
+  photo: {fileID: 21300000, guid: afb51cf83daf0f7a6989d390a0ca255e, type: 3}

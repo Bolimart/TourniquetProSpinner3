@@ -15,4 +15,4 @@ MonoBehaviour:
   score: 100
   multiplier: 0.1
   text: Cool!
-  photo: {fileID: 21300000, guid: 37cb8a9084fb4b444a7d19c96a3454ec, type: 3}
+  photo: {fileID: 21300000, guid: ec9195c3cd21b6630b0c8aade068f5c3, type: 3}

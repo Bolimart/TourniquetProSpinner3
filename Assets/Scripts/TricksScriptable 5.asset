@@ -15,4 +15,4 @@ MonoBehaviour:
   score: 1000
   multiplier: 1
   text: Super Hot!
-  photo: {fileID: 21300000, guid: 8d6a47dda95909d4496d94e8ef9150d8, type: 3}
+  photo: {fileID: 21300000, guid: 1d529c0697d6fc04e94b3d5a29e6195d, type: 3}
