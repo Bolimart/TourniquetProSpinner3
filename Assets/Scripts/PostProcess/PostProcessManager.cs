@@ -27,7 +27,6 @@ public class PostProcessManager : MonoBehaviour
     
     void updateNausea()
     {
-        print("Nausea");
         float amplitude = 0.01f * nauseaAmount;
         nausea.SetFloat("_Amplitude", amplitude);
         nausea.SetFloat("_Zoom", 1f);

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 198997256473772215}
   - component: {fileID: 7541087442882292250}
   - component: {fileID: 8228974558944311724}
-  - component: {fileID: 7712946844743484257}
   m_Layer: 5
   m_Name: BonusText
   m_TagString: Untagged
@@ -132,21 +131,9 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -293.78775, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7712946844743484257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6037038344113910042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c12d4484dfa2011f5a17f61a943deade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BonusTextScript

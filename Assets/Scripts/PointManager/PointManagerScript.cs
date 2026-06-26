@@ -17,13 +17,14 @@ public class PointManagerScript : MonoBehaviour
     public float ComboMultiplier = 0.6f;
     private float _defaultMultiplier;
     public CanvaGameScript canvaGameScript;
-    public BonusTextScript bonusTextScript;
 
     public int TricksIndex = 0;
     public float bonusResetTime = 2f;
-    private float _bonusResetTimer = 0f; 
+    private float _bonusResetTimer = 0f;
+    private bool asStart = true;
+    private int lastHundredScore = 0;
 
-    private int BPM = 100;
+    private float BPM = 60f;
     // ———— Unity events ————
     
     [SerializeField] private GameEvent _gameEvent;
@@ -44,32 +45,46 @@ public class PointManagerScript : MonoBehaviour
 
     void Update()
     {
-        
-        /*if (ComboMultiplier <= _defaultMultiplier)
+        if (asStart)
         {
-            _bonusResetTimer += Time.deltaTime;
-            if (_bonusResetTimer > bonusResetTime)
+            // Décrément du timer combo
+            if (ComboMultiplier > _defaultMultiplier)
             {
-                ComboMultiplier = _defaultMultiplier;
-                bonusTextScript.SetAmount(ComboMultiplier);
-                _bonusResetTimer = 0f;
+                _bonusResetTimer += Time.deltaTime;
+                if (_bonusResetTimer >= bonusResetTime)
+                {
+                    print($"Reset combo: {ComboMultiplier} -> {_defaultMultiplier} (defaultMultiplier={_defaultMultiplier})");
+                    ComboMultiplier = _defaultMultiplier;
+                    _bonusResetTimer = 0f;
+                }
             }
-        }*/
-        BPM = 100 + spinAroundPoint.BaseMultiplier + (int)ComboMultiplier;
-        Debug.Log("BPM: " + BPM.ToString() + " ComboMultiplier: " + ComboMultiplier.ToString());
-        Debug.Log("BaseMultiplier: " + spinAroundPoint.BaseMultiplier.ToString());
-        BpmText.text = "BPM: " + BPM.ToString() ;
-        pointsText.text = points.ToString("F0") + "pts" ;
+        
+            BPM = spinAroundPoint.BaseMultiplier + ComboMultiplier;
+            points += Time.deltaTime * BPM;
+
+            pointsText.text = points.ToString("F0") + "pts";
+            BpmText.text = BPM.ToString("F2") + "x";
+        }
     }
 
+    
     void OnTrickPerformed()
     {
         TricksScriptable trick = tricks[TricksIndex];
         canvaGameScript.SpawnPhoto(trick.photo);
         canvaGameScript.SpawnPointsText(trick.score, trick.multiplier, trick.text);
-        bonusTextScript.SetAmount(trick.multiplier);
+
         ComboMultiplier += trick.multiplier;
+    
+        int hundredsBefore = (int)(points / 100);
         points += trick.score * ComboMultiplier;
+        int hundredsAfter = (int)(points / 100);
+
+        int newHundreds = hundredsAfter - hundredsBefore;
+        for (int i = 0; i < newHundreds; i++)
+            _gameEvent.on100Score();
+
         _bonusResetTimer = 0f;
+        TricksIndex = (TricksIndex + 1) % tricks.Length;
     }
 }

@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0519507b723c478f8b2dc69c21b691e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ImageScript
-  showTime: 1.5
+  showTime: 0.3
   rotationRange: {x: -15, y: 15}
