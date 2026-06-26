@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 102502954258557367}
   - component: {fileID: 2730693518478535513}
+  - component: {fileID: 3182689145075015972}
+  - component: {fileID: 8262673422859429238}
+  - component: {fileID: 3292638140706812258}
+  - component: {fileID: 4285725312967574843}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,8 +48,177 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3337e7931c3edf47a8fd50839eef7fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  spawnRadius: 15
+  spawnCenter: {x: 0, y: 1.5, z: 0}
+  spinAroundPoint: {fileID: 3182689145075015972}
   crowdPrefabs:
   - {fileID: 2531732917117552731, guid: 9943ca175758fd647bc63cf4a564c3d8, type: 3}
-  Plane: {fileID: 0}
   _gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}
   playerTransform: {fileID: 0}
+  volumeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxCrowdCount: 20
+--- !u!114 &3182689145075015972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542282737494562964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
+  origin: {x: 0, y: 0, z: 0}
+  axis: {x: 0, y: 1, z: 0}
+  objectsToRotate:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}
+  initialSpeed: 100
+  maxSpeed: 1000
+  accelerationTime: 120
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  BaseMultiplier: 0
+  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
+--- !u!114 &8262673422859429238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542282737494562964}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe9a858fe415a0823a1f14bdfa117268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpinAroundPoint
+  origin: {x: 0, y: 0, z: 0}
+  axis: {x: 0, y: 1, z: 0}
+  objectsToRotate:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  gameEvent: {fileID: 0}
+  initialSpeed: 100
+  maxSpeed: 100
+  accelerationTime: 120
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.99968606
+      outSlope: -0.99968606
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0004864
+      value: -0.00017224252
+      inSlope: -0.99968606
+      outSlope: -0.99968606
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  BaseMultiplier: 0
+  shouldSpeedUp: {fileID: 11400000, guid: 2853f30071ac2c6429b6bbcc5b05f362, type: 2}
+--- !u!114 &3292638140706812258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542282737494562964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7028cfe0d1381ba8f4996094c1ed3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PointManagerScript
+  pointsText: {fileID: 0}
+  BpmText: {fileID: 0}
+  spinAroundPoint: {fileID: 3182689145075015972}
+  tricks:
+  - {fileID: 11400000, guid: 42bd44e3caa9aa24180a39ca6b664629, type: 2}
+  - {fileID: 11400000, guid: b42cfa54773f40b49b49ce4690a0a5e5, type: 2}
+  - {fileID: 11400000, guid: f66ab15fdb9c75541aa61b5fe3ca02da, type: 2}
+  - {fileID: 11400000, guid: 5287d7aff36fa45478373e0eecbb8ae8, type: 2}
+  - {fileID: 11400000, guid: 1fab6b9dee1fba6419029b32dd0e586b, type: 2}
+  - {fileID: 11400000, guid: f70971342e6b9f04e9e68319be3b7350, type: 2}
+  points: 0
+  ComboMultiplier: 0.6
+  canvaGameScript: {fileID: 0}
+  TricksIndex: 0
+  bonusResetTime: 6
+  _gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}
+--- !u!114 &4285725312967574843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542282737494562964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49ef666af36b620469be6b3bf41850e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TricksManager
+  _gameEvent: {fileID: 11400000, guid: 9e7fb00f66674f24bb43535494591f2d, type: 2}

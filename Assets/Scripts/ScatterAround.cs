@@ -10,7 +10,6 @@ public class ScatterAround : MonoBehaviour
     [SerializeField] private float minSize = 0.5f;
     [SerializeField] private float maxSize = 2f;
     [SerializeField] private int seed = 42;
-    public SpinAroundPoint spinAroundPoint;
 
     void Start()
     {
@@ -31,7 +30,6 @@ public class ScatterAround : MonoBehaviour
 
             GameObject go = new GameObject($"Sprite_{i}");
             go.transform.position = pos;
-            spinAroundPoint.AddObjects(go);
 
             // Regarde l'origine sur le plan horizontal
             Vector3 dirToOrigin = (Vector3.zero - pos);

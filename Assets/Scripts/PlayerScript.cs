@@ -24,6 +24,10 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private TricksManager tricksManager;
     
+    private AudioSource audioSource;
+    private float pitch = 1f;
+    private float pitchChange = 1.059463094f;
+    
     public bool canMove = true;
 
     private float _yaw;
@@ -46,6 +50,7 @@ public class PlayerScript : MonoBehaviour
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
@@ -56,6 +61,9 @@ public class PlayerScript : MonoBehaviour
             _leftHandScript.OnGrabbed += OnHandGrabbed;
             _rightHandScript.OnGrabbed += OnHandGrabbed;
         }
+
+        gameEvent.onTrickPerformed += OnTrickPerformedAudio;
+        gameEvent.onResetTrickCombo += OnResetTrickCombo;
     }
 
     void OnEnable()
@@ -72,6 +80,8 @@ public class PlayerScript : MonoBehaviour
         playerInputActions.Player.LeftClick.performed -= MoveHands;
         playerInputActions.Player.RightClick.performed -= MoveHands;
         playerInputActions.Player.TricksButton.performed -= isTrickable;
+        gameEvent.onTrickPerformed -= OnTrickPerformedAudio;
+        gameEvent.onResetTrickCombo -= OnResetTrickCombo;
         playerInputActions.Disable();
     }
 
@@ -203,8 +213,20 @@ public class PlayerScript : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
-        float speed = spinAroundPointScript.GetRotationSpeed() / 100;
+        float speed = spinAroundPointScript.GetRotationSpeed() / 10;
         print(speed);
         rb.AddForce((transform.up + transform.forward) * speed, ForceMode.Impulse);
+    }
+    
+    private void OnTrickPerformedAudio()
+    {
+        pitch *= pitchChange;
+        audioSource.pitch = pitch;
+        audioSource.Play();
+    }
+
+    private void OnResetTrickCombo()
+    {
+        pitch = 1f;
     }
 }
