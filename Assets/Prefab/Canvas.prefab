@@ -32,7 +32,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -700, y: 330}
+  m_AnchoredPosition: {x: -661, y: 250}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2070591344418314765
@@ -623,6 +623,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6949909108253335950, guid: 8d774e19a3b9b5eea87032489ce87f4e, type: 3}
+      propertyPath: Cursor
+      value: 
+      objectReference: {fileID: 6100736543557530646}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -633,6 +637,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3681333458977230085, guid: 8d774e19a3b9b5eea87032489ce87f4e, type: 3}
   m_PrefabInstance: {fileID: 6977342881662315235}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6100736543557530646 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3782649793233854197, guid: 8d774e19a3b9b5eea87032489ce87f4e, type: 3}
+  m_PrefabInstance: {fileID: 6977342881662315235}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1001 &6987466019720492708
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -685,12 +685,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5195912535702919787, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195912535702919787, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 5195912535702919787, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 860630738145031621, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32764339c36b9261f80d9e38ba069381, type: 3}
+--- !u!1 &1503579643 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356572094856837267, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+  m_PrefabInstance: {fileID: 3793881119517498409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1561871325 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8262673422859429238, guid: cd6af84bcd1afa640bd98f3c6f22ef59, type: 3}
@@ -729,6 +746,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2970889004411199829, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
   m_PrefabInstance: {fileID: 3793881119517498409}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1681226885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503579643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce79b420fa06bcf59330465f9855c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
+  delay: 3
+  sceneName: Game
 --- !u!1 &1735645050 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5911870782615613099, guid: f3257271a88dbee4ead97f25b9c39738, type: 3}
@@ -1101,6 +1132,10 @@ PrefabInstance:
       propertyPath: cursorScript
       value: 
       objectReference: {fileID: 1854151848}
+    - target: {fileID: 103333162980945543, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      propertyPath: grabDuration
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2229503849893606429, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: m_ClearFlags
       value: 1
@@ -1153,6 +1188,18 @@ PrefabInstance:
       propertyPath: cursorScript
       value: 
       objectReference: {fileID: 1854151848}
+    - target: {fileID: 3322856212925139703, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      propertyPath: grabDuration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837837363759477443, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      propertyPath: radius
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8837837363759477443, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      propertyPath: cursorScript
+      value: 
+      objectReference: {fileID: 1854151848}
     - target: {fileID: 8837837363759477443, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
       propertyPath: tricksManager
       value: 
@@ -1164,7 +1211,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2356572094856837267, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1681226885}
   m_SourcePrefab: {fileID: 100100000, guid: 1cc37de7d15b94c4188fc8b684ad05d0, type: 3}
 --- !u!1001 &4918061521278008960
 PrefabInstance:

@@ -66,7 +66,7 @@ public class PointTextScript : MonoBehaviour
     private IEnumerator GoDownCoroutine()
     {
         var start = transform.position;
-        var destination = transform.position - new Vector3(0, downDisplacement, 0);
+        var destination = transform.position - new Vector3(0, downDisplacement * Screen.height / 1080f, 0);
         var timer = 0f;
     
         while (timer < downSpeed)

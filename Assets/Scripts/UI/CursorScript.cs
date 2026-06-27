@@ -7,6 +7,7 @@ public class CursorScript : MonoBehaviour
     
     public Image LeftHand;
     public Image RightHand;
+    public Image Cursor;
     
     // ———— Methods ————
     
@@ -22,5 +23,10 @@ public class CursorScript : MonoBehaviour
             RightHand.color = color;
             RightHand.sprite = sprite;
         }
+    }
+
+    public void UpdateCursor(bool canGrab)
+    {
+        Cursor.enabled = canGrab;
     }
 }

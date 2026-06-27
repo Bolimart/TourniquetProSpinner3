@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerScript : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerScript : MonoBehaviour
     
     private HandScript _leftHandScript;
     private HandScript _rightHandScript;
+    public CursorScript cursorScript;
+    public float radius = 0.2f;
 
     [SerializeField] private GameEvent gameEvent;
 
@@ -44,8 +47,6 @@ public class PlayerScript : MonoBehaviour
     {
         playerInputActions = new InputSystem_Actions();
         playerInputActions.Enable();
-        
-        
     }
 
     void Start()
@@ -119,41 +120,39 @@ public class PlayerScript : MonoBehaviour
     }
 
 
-    void MoveHands(CallbackContext context){
+    void MoveHands(CallbackContext context)
+    {
+        screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
-        
-        HandScript handToMove;
-        // Determine which hand triggered the action
-        if (context.action.name == "LeftClick")
-        {
-            handToMove = _leftHandScript;
-        }
-        else
-        {
-            handToMove = _rightHandScript;
-        }
-
+    
+        HandScript handToMove = context.action.name == "LeftClick" ? _leftHandScript : _rightHandScript;
         HandScript handScript = handToMove.GetComponent<HandScript>();
-        if(handScript.isGrabbing)
-        {
+
+        if (handScript.isGrabbing)
             handScript.StopGrabbing();
-        }
 
-        float radius = 0.6f; // Rayon de tolérance
-
-        if (Physics.SphereCast(ray, radius, out RaycastHit hit, armLenght) && !hit.collider.CompareTag("Grabbable"))
-        {
-            //Debug.Log("No object hit by spherecast.");
+        // Si rien de grabbable n'est touché, on return
+        if (!Physics.SphereCast(ray, radius, out RaycastHit hit, armLenght) || !hit.collider.CompareTag("Grabbable"))
             return;
-        }
-
-        /*if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f) && !hitInfo.collider.CompareTag("Grabbable"))
-        {
-            Debug.Log("No object hit by raycast.");
-            return;
-        }*/
 
         handScript.SetTarget(hit.point);
+    }
+    
+    private Ray _lastRay;
+    private float _lastDistance;
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(_lastRay.origin, _lastRay.direction * armLenght);
+    
+        // Sphère au bout du cast
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(_lastRay.origin + _lastRay.direction * armLenght, radius);
+    
+        // Sphère au point de départ
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(_lastRay.origin, radius);
     }
 
     private void Update()
@@ -169,6 +168,18 @@ public class PlayerScript : MonoBehaviour
             goFly(); 
             playerInputActions.Disable();
         }
+        
+        screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
+
+        bool canGrab = Physics.SphereCast(ray, radius, out RaycastHit hit, armLenght) 
+                       && hit.collider.CompareTag("Grabbable");
+
+        _lastRay = ray;
+        // Dans CanGrab ou Update
+        Debug.DrawRay(ray.origin, ray.direction * armLenght, Color.yellow);
+        
+        cursorScript.UpdateCursor(canGrab);
         
     }
 
@@ -216,7 +227,8 @@ public class PlayerScript : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
-        float speed = spinAroundPointScript.GetRotationSpeed() / 100;
+        float speed = spinAroundPointScript.GetRotationSpeed() / 80;
+        spinAroundPointScript.StopTurning();
         rb.AddForce((transform.up + transform.forward) * speed, ForceMode.Impulse);
     }
     
