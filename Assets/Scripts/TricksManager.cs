@@ -11,20 +11,13 @@ public class TricksManager : MonoBehaviour
 
     private float TrickedAt = 0f;
     private float TrickDuration = 1f;
+    
+    private bool _comboActive = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pointManagerScript = GetComponent<PointManagerScript>();
-    }
-
-    void OnEnable()
-    {
-        _gameEvent.onResetTrickCombo += ResetTrickCombo;
-    }
-
-    void OnDisable()
-    {
-        _gameEvent.onResetTrickCombo -= ResetTrickCombo;
     }
 
     public bool TryTrick()
@@ -36,19 +29,6 @@ public class TricksManager : MonoBehaviour
         return false;
     }
 
-    void Update()
-    {
-        if (Time.time - TrickedAt > TrickDuration + trickComboDuration)
-        {
-            ResetTrickCombo();
-        }
-    }
-
-    public void PerformTrick()
-    {
-        TrickedAt = Time.time;
-        UpgradeTricks();
-    }
     public void BigTricks()
     {
         
@@ -68,6 +48,22 @@ public class TricksManager : MonoBehaviour
             pointManagerScript.TricksIndex++;
             Debug.Log("Trick index upgraded to " + pointManagerScript.TricksIndex);
         }
+    }
+    void Update()
+    {
+        if (_comboActive && Time.time - TrickedAt > TrickDuration + trickComboDuration)
+        {
+            _gameEvent.ResetTrickCombo();
+            ResetTrickCombo();
+            _comboActive = false;
+        }
+    }
+
+    public void PerformTrick()
+    {
+        TrickedAt = Time.time;
+        _comboActive = true;
+        UpgradeTricks();
     }
 
     private void ResetTrickCombo()

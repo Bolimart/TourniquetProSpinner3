@@ -64,6 +64,9 @@ public class PlayerScript : MonoBehaviour
 
         gameEvent.onTrickPerformed += OnTrickPerformedAudio;
         gameEvent.onResetTrickCombo += OnResetTrickCombo;
+        
+        SceneChanger sceneChanger = GetComponent<SceneChanger>();
+        gameEvent.onGameOver = sceneChanger.StartSceneChange;
     }
 
     void OnEnable()
