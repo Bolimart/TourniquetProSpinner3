@@ -213,8 +213,7 @@ public class PlayerScript : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.useGravity = true;
         rb.isKinematic = false;
-        float speed = spinAroundPointScript.GetRotationSpeed() / 10;
-        print(speed);
+        float speed = spinAroundPointScript.GetRotationSpeed() / 100;
         rb.AddForce((transform.up + transform.forward) * speed, ForceMode.Impulse);
     }
     
